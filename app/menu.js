@@ -22,15 +22,14 @@ function init(gui) {
   var session_menu = new gui.Menu();
   session_menu.append(new gui.MenuItem({
         label: 'Load',
-        click: function () {
-          alert('Load');
-        }
+        enabled: false
       }
     )
   );
 
   session_menu.append(new gui.MenuItem({
         label: 'Save',
+        enabled: false
       }
     )
   );
@@ -55,7 +54,8 @@ function init(gui) {
   // Data
   var data = new gui.Menu();
   data.append(new gui.MenuItem({
-        label: 'Load SQLite'
+        label: 'Load SQLite',
+        enabled: false
       }
     )
   );

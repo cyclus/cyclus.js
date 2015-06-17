@@ -27,7 +27,8 @@ function load_scenario(filename) {
 function init(gui, menu) {
 
   menu.append(new gui.MenuItem({
-    label: 'New'
+    label: 'New',
+    enabled: false
   }));
 
   menu.append(new gui.MenuItem({
@@ -38,11 +39,13 @@ function init(gui, menu) {
   }));
 
   menu.append(new gui.MenuItem({
-    label: 'Save'
+    label: 'Save',
+    enabled: false
   }));
 
   menu.append(new gui.MenuItem({
-    label: 'Save As'
+    label: 'Save As',
+    enabled: false
   }));
 
   var window = global.window;
