@@ -1,13 +1,20 @@
+//@import url(//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic);
+//@import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
 #title {
   font-size: 18pt;
 }
 
-#dev-label {
-  position: fixed;
-  top: 10pt;
-  right:20pt
+body {
+  font: 11pt arial;
 }
 
 #senario {
   padding-top: 50pt;
+}
+
+#scenario-text {
+  //font: normal 12pt "Ubuntu Mono";
+  //font: normal 10pt Monaco;
+  font: normal 12pt "Courier New";
 }

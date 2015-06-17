@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <title>Cyclus.js</title>
 
-  <link rel="stylesheet" type="text/css" href="assets/app.css" />
+  <link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="../node_modules/codemirror/addon/fold/foldgutter.css" />
+  <link rel="stylesheet" type="text/css" href="assets/app.css">
+
+  <script src="cyclus.js"></script>
 </head>
 
 <body>
@@ -17,8 +21,9 @@
     <ul id="scenario-items"></ul>
   </div>
 
-
-  <script src="app.js"></script>
+  <div style="max-width:600px; max-height: 600px; border: solid 1px black">
+    <textarea id="xml_editor"></textarea>
+  </div>
 </body>
 
 </html>

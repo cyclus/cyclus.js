@@ -7,8 +7,8 @@ var fileDialog;
 
 function choose(accept, cb) {
   if (!fileDialog) {
-    fileDialog = document.querySelector('#fileDialog');
-    fileDialog.addEventListener('click',fileDialogChanged);
+    fileDialog = global.window.document.querySelector('#fileDialog');
+    fileDialog.addEventListener('change',fileDialogChanged);
   }
 
   callback = cb;
@@ -17,7 +17,7 @@ function choose(accept, cb) {
 }
 
 function fileDialogChanged(e) {
-  callback('foo');
+  callback(this.value);
 }
 
-//exports.choose = choose;
+exports.choose = choose;
