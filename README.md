@@ -1,4 +1,4 @@
-# Cyclusjs
+# Cyclus.js
 
 **Cyclus.js** is a user interface for [Cyclus](https://github.com/cyclus/cyclus), a nuclear 
 fuel cycle simulation.
