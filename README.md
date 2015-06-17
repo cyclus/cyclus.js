@@ -4,13 +4,13 @@
 fuel cycle simulation.
 
 ## Dependencies
-* [NW.j](http://nwjs.io) formally known as node-webkit
+* [NW.js](http://nwjs.io) formally known as node-webkit
 * [npm](http://npmjs.com): package manager. npm comes with nodejs [Download](https://nodejs.org/download)
 
 ## Install
-### from source
-  cd /path/to/cyclus.js
-  npm install
+### From sources
+    cd /path/to/cyclus.js
+    npm install
   
 ## Run
-  nw .
+    nw .
