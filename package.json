@@ -10,7 +10,7 @@
   "window": {
     "title": "Cyclus.js",
     "icon": "assests/cyclist.png",
-    "toolbar": true,
+    "toolbar": false,
     "width": 800,
     "height": 600
   },

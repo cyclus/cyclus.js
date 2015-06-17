@@ -15,6 +15,13 @@ function init(gui) {
         hideWindow: true
       }
     );
+
+    menubar.items[0].submenu.insert(new gui.MenuItem({
+      label:'Show Dev Tool',
+      click: function() {
+          win.showDevTools();
+      }
+    }), 1);
   }
   win.menu = menubar;
 
