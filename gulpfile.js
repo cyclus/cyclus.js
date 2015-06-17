@@ -41,6 +41,7 @@ gulp.task('build', [], function(cb) {
     //version: '0.9.2',
     name: 'cyclusjs',
     cacheDir:      './dist/cache',
+    buildDir:      './dist',
     platforms:     platforms,
     macIcns:       './app/assets/icons/cyclus.icns',
     //winIco      './app/assets/icons/cyclus.ico',
