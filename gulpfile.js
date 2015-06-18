@@ -38,6 +38,7 @@ gulp.task('build', [], function(cb) {
   // Initialize
   var nw = new NodeWebkitBuilder({
     files:         ['./package.json', './app/**/*'].concat(modules),
+    version: '0.12.2',
     name: 'cyclusjs',
     cacheDir:      './dist/cache',
     buildDir:      './dist',
