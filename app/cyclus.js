@@ -3,16 +3,17 @@
  */
 
 global.window = window;
-global.gui = require('nw.gui');
+global.gui = window.gui;
 global.document = window.document;
 global.navigator = window.navigator;
 
-var menu = require('./menu');
-var cycic = require('./cycic/cycic');
+//var gui = require('nw.gui');
+define(function(require) {
+  var menu = require('menu');
+  //var test = require('test');
+  var cycic = require('cycic/cycic');
 
-global.window.onload = function() {
-  menu.init(global.gui);
-  cycic.init(global.gui, menu.get('Scenario').submenu);
-
-  global.window.focus();
-};
+    menu.init(window.gui);
+    cycic.init(window.gui, menu.get('Scenario').submenu);
+    window.focus();
+});
