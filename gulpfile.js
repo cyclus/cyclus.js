@@ -5,16 +5,22 @@ gulp.task('default', ['build']);
 
 gulp.task('build', [], function(cb) {
 
-  var package = require('./package.json')
-
-  // Find out which modules to include
+  // Find out which node modules to include
   var modules = [];
-  if (!!package.dependencies) {
-    modules = Object.keys(package.dependencies)
+
+  var node = require('./package.json')
+  if (!!node.dependencies) {
+    modules = Object.keys(node.dependencies)
       .filter(function (m) { return m != 'nodewebkit' })
-      .map(function (m) { return './node_modules/' + m + '/**/*' })
+      .map(function (m) { return './node_modules/' + m + '/**/*' });
   }
 
+  var bower = require('./bower.json')
+  if (!!bower.dependencies) {
+    modules = modules.concat(Object.keys(bower.dependencies)
+      .filter(function (m) { return m != 'nodewebkit' })
+      .map(function (m) { return './bower_components/' + m + '/**/*' }));
+  }
   // Which platforms should we build
   var options = ['osx', 'win', 'linux', 'osx32', 'osx64', 'win32', 'win64', 'linux32', 'linux64'];
   var platforms;
