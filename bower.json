@@ -1,0 +1,22 @@
+{
+  "name": "cyclus.js",
+  "version": "0.1",
+  "homepage": "https://github.com/cyclus/cyclusjs",
+  "authors": [
+    "Yarden Livnat <yarden@sci.utah.edu>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "codemirror": "~5.3.0"
+  }
+}

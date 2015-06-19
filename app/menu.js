@@ -6,16 +6,6 @@ define(function(require) {
   var menubar;
 
   function dev() {
-    //window.requireNode('nw.gui').Window.get().showDevTools();
-      //var r = window.require;
-      ////delete require;
-      //global.require =  window.requireNode;
-      //window.require = window.requireNode;
-      //window.gui.Window.get().showDevTools();
-      //window.require = r;
-  }
-
-  function dev2() {
     window.gui.Window.get().showDevTools();
   }
 
@@ -33,7 +23,17 @@ define(function(require) {
 
       menubar.items[0].submenu.insert(new gui.MenuItem({
         label:'Show Dev Tool',
-        click:dev2
+        click: function() {
+          var save = window.require;
+          window.require = window.requireNode;
+          if (window.gui.Window.get().isDevToolsOpen())
+            window.gui.Window.get().closeDevTools();
+          else
+            window.gui.Window.get().showDevTools();
+          setTimeout(function() {
+            window.require = save;
+          }, 1000);
+        }
       }), 1);
     }
     win.menu = menubar;

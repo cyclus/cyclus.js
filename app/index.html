@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>Cyclus.js</title>
 
-  <link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css">
-  <link rel="stylesheet" href="../node_modules/codemirror/addon/fold/foldgutter.css" />
-  <link rel="stylesheet" type="text/css" href="assets/app.css">
+  <link rel="stylesheet" href="assets/lib.css">
+  <link rel="stylesheet" href="assets/app.css">
 
   <script>
+    console.log('script');
     window.gui = require('nw.gui');
 
     window.requireNode = window.require;
@@ -28,6 +28,9 @@
     <textarea id="xml_editor"></textarea>
   </div>
 
+  <script>
+    console.log('end');
+  </script>
   <script data-main="init" src="../node_modules/requirejs/require.js"></script>
 </body>
 
