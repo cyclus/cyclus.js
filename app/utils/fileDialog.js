@@ -1,16 +1,19 @@
-/**
- * Created by yarden on 6/16/15.
- */
+define(['exports', 'module'], function (exports, module) {
+  /**
+   * Created by yarden on 6/16/15.
+   */
 
-define(function(require) {
+  'use strict';
 
+  module.exports = dialog;
   var callback;
   var fileDialog;
+  var x;
 
-  function choose(accept, cb) {
+  function dialog(accept, cb) {
     if (!fileDialog) {
       fileDialog = global.window.document.querySelector('#fileDialog');
-      fileDialog.addEventListener('change',fileDialogChanged);
+      fileDialog.addEventListener('change', fileDialogChanged);
     }
 
     callback = cb;
@@ -21,9 +24,6 @@ define(function(require) {
   function fileDialogChanged(e) {
     callback(this.value);
   }
-
-  return {
-    choose: choose
-  }
 });
-;
+
+//# sourceMappingURL=fileDialog.js.map

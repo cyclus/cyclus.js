@@ -27,10 +27,13 @@
   "license": "MIT",
   "dependencies": {
     "promised-io": "^0.3.5",
-    "requirejs": "^2.1.18"
+    "requirejs": "^2.1.18",
+    "requirejs-babel": "0.0.6"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-sourcemaps": "^1.5.2",
     "gulp-util": "^3.0.5",
     "minimist": "^1.1.1",
     "node-webkit-builder": "^1.0.12"

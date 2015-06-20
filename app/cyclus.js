@@ -1,17 +1,13 @@
-/**
- * Created by yarden on 6/10/15.
- */
+define(["exports", "menu", "cycic/cycic"], function (exports, _menu, _cycicCycic) {
+  /**
+   * Created by yarden on 6/19/15.
+   */
 
-global.window = window;
-//global.gui = window.gui;
-global.document = window.document;
-global.navigator = window.navigator;
+  "use strict";
 
-define(function(require) {
-  var menu = require('./menu');
-  var cycic = require('./cycic/cycic');
-
-  menu.init(window.gui);
-  cycic.init(menu.get('Scenario').submenu);
+  _menu.init();
+  _cycicCycic.init(_menu.get("Scenario").submenu);
   window.focus();
 });
+
+//# sourceMappingURL=cyclus.js.map
