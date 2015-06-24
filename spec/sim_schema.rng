@@ -1,0 +1,31 @@
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <include href="fuelcycle_v1.rng"/>
+
+    <!-- either: -->
+       <!-- include a spec of define it here -->
+
+       <include href="archetype_specs.rng"/>
+
+    <!-- or include the actual spec here -->
+        <!--<define name="archetype.spec" combine="choice">-->
+            <!--<element name="Reactor">-->
+                <!--<element name="fuel">-->
+                    <!--<attribute name="incommods"><data type="IDREFS"/></attribute>-->
+                    <!--<attribute name="outcommods"><data type="IDREFS"/></attribute>-->
+                <!--</element>-->
+                <!--<element name="cycle_time"><data type="nonNegativeInteger"/></element>-->
+            <!--</element>-->
+        <!--</define>-->
+
+        <!--<define name="archetype.spec" combine="choice">-->
+            <!--<element name="Enrichment">-->
+                <!--<element name="feed">-->
+                    <!--<attribute name="commod"><data type="IDREFS"/></attribute>-->
+                    <!--<attribute name="recipe"><data type="IDREFS"/></attribute>-->
+                    <!--<element name="initial"><text/></element>-->
+                <!--</element>-->
+            <!--</element>-->
+        <!--</define>-->
+</grammar>

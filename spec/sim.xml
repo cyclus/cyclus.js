@@ -1,0 +1,75 @@
+<simulation xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <libs>
+        <xi:include href="archetypes.xml"/>
+        <xi:include href="recipes.xml"/>
+    </libs>
+
+    <spec>
+        <start>01-2015</start>
+        <duration>600</duration>
+    </spec>
+
+    <!-- commodities -->
+    <commodity id="cmd.uox">       <solution>0.1</solution> </commodity>
+    <commodity id="cmd.mox">       <solution>0.1</solution> </commodity>
+    <commodity id="cmd.spent_uox"> <solution>0.1</solution> </commodity>
+    <commodity id="cmd.waste">     <solution>0.1</solution> </commodity>
+    <commodity id="cmd.nat_u">     <solution>0.1</solution> </commodity>
+    <commodity id="cmd.depleted_u">     <solution>0.1</solution> </commodity>
+
+    <!-- recipes -->
+    <recipe id="rcp.nat_u">
+        <basis>mass</basis>
+        <nuclide> <id>U235</id> <comp>0.711</comp></nuclide>
+        <nuclide> <id>U238</id> <comp>99.289</comp> </nuclide>
+    </recipe>
+
+    <recipe ref="rcp.spent_uox"/>
+
+    <!-- archetypes -->
+    <archetype id="arch.src">
+        <name>Source</name>
+        <lib>cycamore</lib>
+    </archetype>
+
+    <archetype id="arch.repo">
+        <name>Sink</name>      <!-- provide default values -->
+        <defaults>
+            <Sink>
+                <in_commod ref="cmd.waste"></in_commod>
+                <capacity>1e100</capacity>
+            </Sink>
+        </defaults>
+    </archetype>
+
+    <!-- facilities -->
+    <facility id="fclt.depleted_src">
+        <spec ref="arch.src">
+            <Source>
+                <out_commod ref="cmd.depleted_u"/>
+                <out_recipe ref="rcp.depleted_u"/>
+            </Source>
+        </spec>
+    </facility>
+
+    <facility id="fclt.repo">
+        <name>Repo</name>
+        <spec ref="arch.repo"/>  <!-- uses default values -->
+    </facility>
+
+    <facility id="fclt.test">    <!-- override default values -->
+        <name>Override</name>
+        <spec ref="arch.repo">
+            <Sink>
+                <in_commod ref="cmd.waste"></in_commod>
+                <capacity>1e100</capacity>
+            </Sink>
+        </spec>
+    </facility>
+
+    <facility id="fclt.reactor">
+        <spec ref="arch.reactor"></spec>
+    </facility>
+
+</simulation>

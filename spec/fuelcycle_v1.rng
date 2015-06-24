@@ -1,0 +1,344 @@
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <start>
+
+        <element name="simulation">
+            <optional>
+                <element name="libs">
+                    <zeroOrMore> <ref name="lib"/> </zeroOrMore>
+                </element>
+            </optional>
+
+            <ref name="spec"/>
+            <zeroOrMore>
+                <ref name="commodity"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="recipe"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="archetype"/>
+            </zeroOrMore>
+            <oneOrMore>
+                <ref name="facility"/>
+            </oneOrMore>
+            <!--<oneOrMore>-->
+                <!--<ref name="institution"/>-->
+            <!--</oneOrMore>-->
+            <!--<oneOrMore>-->
+                <!--<ref name="region"/>-->
+            <!--</oneOrMore>-->
+        </element>
+    </start>
+
+    <!-- definitions -->
+
+    <!-- cyclus elements -->
+    <define name="commodity.elem">
+        <element name="solution"> <data type="double"/> </element>
+    </define>
+
+    <define name="recipe.elem">
+        <element name="basis">
+            <choice>
+                <value>atom</value>
+                <value>mass</value>
+            </choice>
+        </element>
+        <oneOrMore>
+            <ref name="nuclide"/>
+        </oneOrMore>
+    </define>
+
+    <define name="archetype.elem">
+        <element name="name"> <text/> </element>
+        <optional> <element name="alias"> <text/> </element> </optional>
+        <optional> <element name="path"> <text/> </element> </optional>
+        <optional> <element name="lib"> <text/> </element> </optional>
+        <optional>
+            <element name="defaults">
+                <ref name="archetype.spec"/>
+            </element>
+        </optional>
+    </define>
+
+    <define name="archetype.spec" combine="choice">
+        <notAllowed/>
+    </define>
+
+    <define name="facility.elem">
+        <optional><element name="name"><text/></element></optional>
+        <optional>
+            <element name="lifetime"> <data type="nonNegativeInteger"/> </element>
+        </optional>
+        <element name="spec">
+            <ref name="archetype.ref"/>
+            <optional> <ref name="archetype.spec"/> </optional>
+        </element>
+    </define>
+
+    <define name="institution.elem">
+        <optional>
+            <element name="lifetime"> <data type="nonNegativeInteger"/> </element>
+        </optional>
+
+        <optional>
+            <element name="initialFacilityPrototypes">
+                <oneOrMore>
+                    <element name="prototype">
+                        <ref name="facility.ref"/>
+                        <element name="number"> <data type="nonNegativeInteger"/> </element>
+                    </element>
+                </oneOrMore>
+            </element>
+        </optional>
+
+        <element name="spec">
+            <choice>
+                <group>
+                    <ref name="institution.ref"/>
+                    <optional> <ref name="institution.spec"/> </optional>
+                </group>
+                <ref name="institution.spec"/>
+            </choice>
+        </element>
+    </define>
+
+    <define name="institution.spec" combine="choice">
+        <notAllowed/>
+    </define>
+
+    <define name="region.elem">
+        <element name="lifetime"> <data type="nonNegativeInteger"/> </element>
+        <element name="spec">
+            <ref name="region.spec"/>
+        </element>
+
+        <element name="institutions">
+            <oneOrMore>
+                <ref name="institution"/>
+            </oneOrMore>
+        </element>
+    </define>
+
+    <define name="region.spec" combine="choice">
+        <notAllowed/>
+    </define>
+
+    <define name="nuclide">
+        <element name="nuclide">
+            <element name="id">
+                <choice>
+                    <data type="nonNegativeInteger"/>
+                    <data type="string"/>
+                </choice>
+            </element>
+            <element name="comp"> <data type="double"/> </element>
+        </element>
+    </define>
+
+    <!-- spec -->
+    <define name="spec">
+        <element name="spec">
+            <interleave>
+                <element name="start">
+                    <data type="string">
+                        <param name="pattern">((0?[1-9])|(1[0-2]))-\d{4}</param>
+                    </data>
+                </element>
+
+                <element name="duration"> <data type="nonNegativeInteger"/></element>
+
+                <optional>
+                    <!-- Question: what is this element? -->
+                    <element name="decay"> <text/> </element>
+                </optional>
+            </interleave>
+        </element>
+    </define>
+
+    <!-- commodity -->
+    <define name="commodity">
+        <element name="commodity">
+            <choice>
+                <ref name="commodity.ref"/>
+                <group>
+                    <attribute name="id">
+                        <data type="ID"> <param name="pattern">cmd\..+</param> </data>
+                    </attribute>
+                    <ref name="commodity.elem"/>
+                </group>
+            </choice>
+        </element>
+    </define>
+
+    <define name="commodity.ref">
+        <attribute name="ref">
+            <data type="IDREF"> <param name="pattern">cmd\..+</param> </data>
+        </attribute>
+    </define>
+
+    <define name="commodity.refs">
+        <attribute name="ref">
+            <data type="IDREFS"> <param name="pattern">cmd\..+</param> </data>
+        </attribute>
+    </define>
+
+    <!-- recipe -->
+    <define name="recipe">
+        <element name="recipe">
+            <choice>
+                <ref name="recipe.ref"/>
+                <group>
+                    <attribute name="id">
+                        <data type="ID"> <param name="pattern">rcp\..+</param> </data>
+                    </attribute>
+                    <ref name="recipe.elem"/>
+                </group>
+            </choice>
+        </element>
+    </define>
+
+    <define name="recipe.ref">
+        <attribute name="ref">
+            <data type="IDREF"> <param name="pattern">rcp\..+</param> </data>
+        </attribute>
+    </define>
+
+    <define name="recipe.refs">
+        <attribute name="ref">
+            <data type="IDREFS"> <param name="pattern">rcp\..+</param> </data>
+        </attribute>
+    </define>
+
+    <!-- archetype -->
+    <define name="archetype">
+        <element name="archetype">
+            <choice>
+                <ref name="archetype.ref"/>
+                <group>
+                    <attribute name="id">
+                        <data type="ID"> <param name="pattern">arch\..+</param> </data>
+                    </attribute>
+                    <ref name="archetype.elem"/>
+                </group>
+            </choice>
+        </element>
+    </define>
+
+    <define name="archetype.ref">
+        <attribute name="ref">
+            <data type="IDREF"> <param name="pattern">arch\..+</param> </data>
+        </attribute>
+    </define>
+
+
+    <!-- facility -->
+    <define name="facility">
+        <element name="facility">
+            <choice>
+                <ref name="facility.ref"/>
+                <group>
+                    <attribute name="id">
+                        <data type="ID"> <param name="pattern">fclt\..+</param> </data>
+                    </attribute>
+                    <ref name="facility.elem"/>
+                </group>
+            </choice>
+        </element>
+    </define>
+
+    <define name="facility.ref">
+        <attribute name="ref">
+            <data type="IDREF"> <param name="pattern">fclt\..+</param> </data>
+        </attribute>
+    </define>
+
+    <!-- institution -->
+    <define name="institution">
+        <element name="institution">
+            <choice>
+                <ref name="institution.ref"/>
+                <group>
+                    <attribute name="id">
+                        <data type="ID"> <param name="pattern">inst\..+</param> </data>
+                    </attribute>
+                    <ref name="institution.elem"/>
+                </group>
+            </choice>
+        </element>
+    </define>
+
+    <define name="institution.ref">
+        <attribute name="ref">
+            <data type="IDREF"> <param name="pattern">inst\..+</param> </data>
+        </attribute>
+    </define>
+
+
+    <!-- region -->
+    <define name="region">
+        <element name="region">
+            <choice>
+                <ref name="region.ref"/>
+                <group>
+                    <attribute name="id">
+                        <data type="ID"> <param name="pattern">reg.\..+</param> </data>
+                    </attribute>
+                    <ref name="region.elem"/>
+                </group>
+            </choice>
+        </element>
+    </define>
+
+    <define name="region.ref">
+        <attribute name="ref">
+            <data type="IDREF"> <param name="pattern">reg.\..+</param> </data>
+        </attribute>
+    </define>
+
+
+    <!-- lib -->
+    <define name="lib">
+        <element name="lib">
+            <zeroOrMore>
+                <choice>
+                    <ref name="commodity"/>
+                    <ref name="recipe"/>
+                    <ref name="archetype"/>
+                    <ref name="facility"/>
+                    <ref name="institution"/>
+                    <ref name="region"/>
+
+                    <ref name="lib"/>
+                </choice>
+            </zeroOrMore>
+        </element>
+    </define>
+
+    <!-- built in extentions -->
+
+    <define name="archetype.spec" combine="choice">
+        <element name="Source">
+            <element name="out_commod"><ref name="commodity.ref"/></element>
+            <element name="out_recipe"><ref name="recipe.ref"/></element>
+        </element>
+    </define>
+
+    <define name="archetype.spec" combine="choice">
+        <element name="Sink">
+            <element name="in_commod"> <ref name="commodity.ref"/></element>
+            <element name="capacity"> <data type="double"/></element>
+            <optional><element name="comp"><data type="double"/></element></optional>
+        </element>
+    </define>
+
+    <define name="institution.spec" combine="choice">
+        <element name="NullInstitution">
+            <empty/>
+        </element>
+    </define>
+
+
+</grammar>

@@ -1,0 +1,31 @@
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <define name="archetype.spec" combine="choice">
+        <element name="Reactor">
+            <element name="fuel">
+                <element name="incommods"><ref name="commodity.refs"/></element>
+                <element name="outcommods"><ref name="commodity.refs"/></element>
+            </element>
+            <element name="cycle_time"><data type="nonNegativeInteger"/></element>
+        </element>
+    </define>
+
+    <define name="archetype.spec" combine="choice">
+        <element name="Enrichment">
+            <element name="feed">
+                <element name="commod"><ref name="commodity.refs"/></element>
+                <element name="recipe"><ref name="recipe.refs"/></element>
+                <element name="initial"><data type="double"/></element>
+            </element>
+            <element name="product"><ref name="commodity.ref"/></element>
+            <element name="tails">
+                <element name="assay"><data type="double"/></element>
+                <element name="commod"><ref name="commodity.ref"/></element>
+            </element>
+            <element name="swu_capacity"><data type="double"/></element>
+        </element>
+    </define>
+</grammar>
+
+

@@ -8,6 +8,7 @@ define(["exports", "menu", "cycic/cycic"], function (exports, _menu, _cycicCycic
   _menu.init();
   _cycicCycic.init(_menu.get("Scenario").submenu);
   window.focus();
+  //cycic.test();
 });
 
 //# sourceMappingURL=cyclus.js.map

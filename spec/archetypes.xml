@@ -1,0 +1,34 @@
+<lib>
+    <archetype id="arch.reactor">
+        <name>Reactor</name>
+        <defaults>
+            <Reactor>
+                <fuel>
+                     <incommods ref="cmd.uox cmd.mox"/>
+                     <outcommods ref="cmd.spent_uox cmd.waste"/>
+                </fuel>
+
+                <cycle_time>17</cycle_time>
+            </Reactor>
+        </defaults>
+    </archetype>
+
+    <archetype id="arch.enrichment">
+        <name>Enrichment</name>
+        <defaults>
+            <Enrichment>
+                <feed>
+                    <commod ref="cmd.nat_u"/>
+                    <recipe ref="rcp.nat_u"/>
+                    <initial>1e100</initial>
+                </feed>
+                <product ref="cmd.uox"/>
+                <tails>
+                    <assay>0.003</assay>
+                    <commod ref="cmd.waste"/>
+                </tails>
+                <swu_capacity>1e100</swu_capacity>
+            </Enrichment>
+        </defaults>
+    </archetype>
+</lib>

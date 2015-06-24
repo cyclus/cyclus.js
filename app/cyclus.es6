@@ -8,4 +8,5 @@ import * as cycic from "cycic/cycic";
 menu.init();
 cycic.init(menu.get('Scenario').submenu);
 window.focus();
+//cycic.test();
 
