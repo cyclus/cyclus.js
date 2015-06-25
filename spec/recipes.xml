@@ -1,4 +1,4 @@
-<lib>
+<lib xmlns="http://www.fuelcycle.org/ns/1.0">
     <recipe id="rcp.spent_uox">
         <basis>mass</basis>
         <nuclide> <id>U235</id>  <comp>156.729</comp> </nuclide>

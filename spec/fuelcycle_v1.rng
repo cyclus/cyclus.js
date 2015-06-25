@@ -1,5 +1,6 @@
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
          xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         ns="http://www.fuelcycle.org/ns/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
     <start>
 
@@ -11,6 +12,7 @@
             </optional>
 
             <ref name="spec"/>
+
             <zeroOrMore>
                 <ref name="commodity"/>
             </zeroOrMore>
@@ -34,6 +36,26 @@
 
     <!-- definitions -->
 
+    <!-- spec -->
+    <define name="spec">
+        <element name="spec" ns="http://www.fuelcycle.org/ns/1.0">
+            <interleave>
+                <element name="start">
+                    <data type="string">
+                        <param name="pattern">((0?[1-9])|(1[0-2]))-\d{4}</param>
+                    </data>
+                </element>
+
+                <element name="duration"> <data type="nonNegativeInteger"/></element>
+
+                <optional>
+                    <!-- Question: what is this element? -->
+                    <element name="decay"> <text/> </element>
+                </optional>
+            </interleave>
+        </element>
+    </define>
+
     <!-- cyclus elements -->
     <define name="commodity.elem">
         <element name="solution"> <data type="double"/> </element>
@@ -53,11 +75,11 @@
 
     <define name="archetype.elem">
         <element name="name"> <text/> </element>
-        <optional> <element name="alias"> <text/> </element> </optional>
+        <optional><element name="alias"> <text/> </element> </optional>
         <optional> <element name="path"> <text/> </element> </optional>
         <optional> <element name="lib"> <text/> </element> </optional>
         <optional>
-            <element name="defaults">
+            <element name="config">
                 <ref name="archetype.spec"/>
             </element>
         </optional>
@@ -128,33 +150,8 @@
 
     <define name="nuclide">
         <element name="nuclide">
-            <element name="id">
-                <choice>
-                    <data type="nonNegativeInteger"/>
-                    <data type="string"/>
-                </choice>
-            </element>
+            <element name="id"> <data type="string"/> </element>
             <element name="comp"> <data type="double"/> </element>
-        </element>
-    </define>
-
-    <!-- spec -->
-    <define name="spec">
-        <element name="spec">
-            <interleave>
-                <element name="start">
-                    <data type="string">
-                        <param name="pattern">((0?[1-9])|(1[0-2]))-\d{4}</param>
-                    </data>
-                </element>
-
-                <element name="duration"> <data type="nonNegativeInteger"/></element>
-
-                <optional>
-                    <!-- Question: what is this element? -->
-                    <element name="decay"> <text/> </element>
-                </optional>
-            </interleave>
         </element>
     </define>
 

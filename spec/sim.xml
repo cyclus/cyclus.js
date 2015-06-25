@@ -1,4 +1,6 @@
-<simulation xmlns:xi="http://www.w3.org/2001/XInclude">
+<simulation xmlns="http://www.fuelcycle.org/ns/1.0"
+            xmlns:cyc="http://www.fuelcycle.org/ns/1.0"
+            xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <libs>
         <xi:include href="archetypes.xml"/>
@@ -30,17 +32,18 @@
     <!-- archetypes -->
     <archetype id="arch.src">
         <name>Source</name>
+        <alias>bar</alias>
         <lib>cycamore</lib>
     </archetype>
 
     <archetype id="arch.repo">
         <name>Sink</name>      <!-- provide default values -->
-        <defaults>
+        <config>
             <Sink>
                 <in_commod ref="cmd.waste"></in_commod>
                 <capacity>1e100</capacity>
             </Sink>
-        </defaults>
+        </config>
     </archetype>
 
     <!-- facilities -->

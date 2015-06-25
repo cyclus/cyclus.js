@@ -10,6 +10,7 @@ define(['exports', 'module'], function (exports, module) {
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
   var fs = requireNode('fs');
+  var xml2js = requireNode('xml2js');
 
   var RNG = (function () {
     function RNG(schema) {
@@ -44,7 +45,12 @@ define(['exports', 'module'], function (exports, module) {
 
   function load(filename) {
     // TODO: DOMParser does not throw exception upon error, rather it return a error document
-    var dom = new DOMParser().parseFromString(fs.readFileSync(filename), 'text/xml');
+    var xml = fs.readFileSync(filename);
+    var dom = new DOMParser().parseFromString(xml, 'text/xml');
+
+    var json = xml2js.parseString(xml, function (err, result) {
+      console.dir(result);
+    });
     return new RNG(dom);
   }
 

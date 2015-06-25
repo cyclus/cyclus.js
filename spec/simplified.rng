@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+    <start>
+        <ref name="element1"/>
+    </start>
+    <define name="element1">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">simulation</name>
+            <group>
+                <group>
+                    <group>
+                        <group>
+                            <group>
+                                <choice>
+                                    <empty/>
+                                    <ref name="element2"/>
+                                </choice>
+                                <ref name="element3"/>
+                            </group>
+                            <choice>
+                                <empty/>
+                                <oneOrMore>
+                                    <ref name="element4"/>
+                                </oneOrMore>
+                            </choice>
+                        </group>
+                        <choice>
+                            <empty/>
+                            <oneOrMore>
+                                <ref name="element5"/>
+                            </oneOrMore>
+                        </choice>
+                    </group>
+                    <choice>
+                        <empty/>
+                        <oneOrMore>
+                            <ref name="element6"/>
+                        </oneOrMore>
+                    </choice>
+                </group>
+                <oneOrMore>
+                    <ref name="element7"/>
+                </oneOrMore>
+            </group>
+        </element>
+    </define>
+    <define name="element2">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">libs</name>
+            <choice>
+                <empty/>
+                <oneOrMore>
+                    <ref name="element8"/>
+                </oneOrMore>
+            </choice>
+        </element>
+    </define>
+    <define name="element3">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">spec</name>
+            <interleave>
+                <interleave>
+                    <ref name="element9"/>
+                    <ref name="element10"/>
+                </interleave>
+                <choice>
+                    <empty/>
+                    <ref name="element11"/>
+                </choice>
+            </interleave>
+        </element>
+    </define>
+    <define name="element4">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">commodity</name>
+            <choice>
+                <attribute>
+                    <name ns="">ref</name>
+                    <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                        <param name="pattern">cmd\..+</param>
+                    </data>
+                </attribute>
+                <group>
+                    <attribute>
+                        <name ns="">id</name>
+                        <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="ID">
+                            <param name="pattern">cmd\..+</param>
+                        </data>
+                    </attribute>
+                    <ref name="element12"/>
+                </group>
+            </choice>
+        </element>
+    </define>
+    <define name="element5">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">recipe</name>
+            <choice>
+                <attribute>
+                    <name ns="">ref</name>
+                    <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                        <param name="pattern">rcp\..+</param>
+                    </data>
+                </attribute>
+                <group>
+                    <attribute>
+                        <name ns="">id</name>
+                        <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="ID">
+                            <param name="pattern">rcp\..+</param>
+                        </data>
+                    </attribute>
+                    <group>
+                        <ref name="element13"/>
+                        <oneOrMore>
+                            <ref name="element14"/>
+                        </oneOrMore>
+                    </group>
+                </group>
+            </choice>
+        </element>
+    </define>
+    <define name="element6">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">archetype</name>
+            <choice>
+                <attribute>
+                    <name ns="">ref</name>
+                    <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                        <param name="pattern">arch\..+</param>
+                    </data>
+                </attribute>
+                <group>
+                    <attribute>
+                        <name ns="">id</name>
+                        <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="ID">
+                            <param name="pattern">arch\..+</param>
+                        </data>
+                    </attribute>
+                    <group>
+                        <group>
+                            <group>
+                                <group>
+                                    <ref name="element15"/>
+                                    <choice>
+                                        <empty/>
+                                        <ref name="element16"/>
+                                    </choice>
+                                </group>
+                                <choice>
+                                    <empty/>
+                                    <ref name="element17"/>
+                                </choice>
+                            </group>
+                            <choice>
+                                <empty/>
+                                <ref name="element18"/>
+                            </choice>
+                        </group>
+                        <choice>
+                            <empty/>
+                            <ref name="element19"/>
+                        </choice>
+                    </group>
+                </group>
+            </choice>
+        </element>
+    </define>
+    <define name="element7">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">facility</name>
+            <choice>
+                <attribute>
+                    <name ns="">ref</name>
+                    <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                        <param name="pattern">fclt\..+</param>
+                    </data>
+                </attribute>
+                <group>
+                    <attribute>
+                        <name ns="">id</name>
+                        <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="ID">
+                            <param name="pattern">fclt\..+</param>
+                        </data>
+                    </attribute>
+                    <group>
+                        <group>
+                            <choice>
+                                <empty/>
+                                <ref name="element15"/>
+                            </choice>
+                            <choice>
+                                <empty/>
+                                <ref name="element20"/>
+                            </choice>
+                        </group>
+                        <ref name="element21"/>
+                    </group>
+                </group>
+            </choice>
+        </element>
+    </define>
+    <define name="element8">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">lib</name>
+            <choice>
+                <empty/>
+                <oneOrMore>
+                    <choice>
+                        <choice>
+                            <choice>
+                                <choice>
+                                    <choice>
+                                        <choice>
+                                            <ref name="element4"/>
+                                            <ref name="element5"/>
+                                        </choice>
+                                        <ref name="element6"/>
+                                    </choice>
+                                    <ref name="element7"/>
+                                </choice>
+                                <ref name="element22"/>
+                            </choice>
+                            <ref name="element23"/>
+                        </choice>
+                        <ref name="element8"/>
+                    </choice>
+                </oneOrMore>
+            </choice>
+        </element>
+    </define>
+    <define name="element9">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">start</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="string">
+                <param name="pattern">((0?[1-9])|(1[0-2]))-\d{4}</param>
+            </data>
+        </element>
+    </define>
+    <define name="element10">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">duration</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="nonNegativeInteger"/>
+        </element>
+    </define>
+    <define name="element11">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">decay</name>
+            <text/>
+        </element>
+    </define>
+    <define name="element12">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">solution</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="double"/>
+        </element>
+    </define>
+    <define name="element13">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">basis</name>
+            <choice>
+                <value datatypeLibrary="" type="token" ns="TODO">atom</value>
+                <value datatypeLibrary="" type="token" ns="TODO">mass</value>
+            </choice>
+        </element>
+    </define>
+    <define name="element14">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">nuclide</name>
+            <group>
+                <ref name="element24"/>
+                <ref name="element25"/>
+            </group>
+        </element>
+    </define>
+    <define name="element15">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">name</name>
+            <text/>
+        </element>
+    </define>
+    <define name="element16">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">alias</name>
+            <text/>
+        </element>
+    </define>
+    <define name="element17">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">path</name>
+            <text/>
+        </element>
+    </define>
+    <define name="element18">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">lib</name>
+            <text/>
+        </element>
+    </define>
+    <define name="element19">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">config</name>
+            <choice>
+                <choice>
+                    <choice>
+                        <ref name="element26"/>
+                        <ref name="element27"/>
+                    </choice>
+                    <ref name="element28"/>
+                </choice>
+                <ref name="element29"/>
+            </choice>
+        </element>
+    </define>
+    <define name="element20">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">lifetime</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="nonNegativeInteger"/>
+        </element>
+    </define>
+    <define name="element21">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">spec</name>
+            <group>
+                <attribute>
+                    <name ns="">ref</name>
+                    <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                        <param name="pattern">arch\..+</param>
+                    </data>
+                </attribute>
+                <choice>
+                    <empty/>
+                    <choice>
+                        <choice>
+                            <choice>
+                                <ref name="element26"/>
+                                <ref name="element27"/>
+                            </choice>
+                            <ref name="element28"/>
+                        </choice>
+                        <ref name="element29"/>
+                    </choice>
+                </choice>
+            </group>
+        </element>
+    </define>
+    <define name="element22">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">institution</name>
+            <choice>
+                <attribute>
+                    <name ns="">ref</name>
+                    <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                        <param name="pattern">inst\..+</param>
+                    </data>
+                </attribute>
+                <group>
+                    <attribute>
+                        <name ns="">id</name>
+                        <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="ID">
+                            <param name="pattern">inst\..+</param>
+                        </data>
+                    </attribute>
+                    <group>
+                        <group>
+                            <choice>
+                                <empty/>
+                                <ref name="element30"/>
+                            </choice>
+                            <choice>
+                                <empty/>
+                                <ref name="element31"/>
+                            </choice>
+                        </group>
+                        <ref name="element32"/>
+                    </group>
+                </group>
+            </choice>
+        </element>
+    </define>
+    <define name="element23">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">region</name>
+            <choice>
+                <attribute>
+                    <name ns="">ref</name>
+                    <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                        <param name="pattern">reg.\..+</param>
+                    </data>
+                </attribute>
+                <group>
+                    <attribute>
+                        <name ns="">id</name>
+                        <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="ID">
+                            <param name="pattern">reg.\..+</param>
+                        </data>
+                    </attribute>
+                    <group>
+                        <group>
+                            <ref name="element33"/>
+                            <ref name="element34"/>
+                        </group>
+                        <ref name="element35"/>
+                    </group>
+                </group>
+            </choice>
+        </element>
+    </define>
+    <define name="element24">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">id</name>
+            <choice>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="nonNegativeInteger"/>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="string"/>
+            </choice>
+        </element>
+    </define>
+    <define name="element25">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">comp</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="double"/>
+        </element>
+    </define>
+    <define name="element26">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">Source</name>
+            <group>
+                <ref name="element36"/>
+                <ref name="element37"/>
+            </group>
+        </element>
+    </define>
+    <define name="element27">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">Sink</name>
+            <group>
+                <group>
+                    <ref name="element38"/>
+                    <ref name="element39"/>
+                </group>
+                <choice>
+                    <empty/>
+                    <ref name="element40"/>
+                </choice>
+            </group>
+        </element>
+    </define>
+    <define name="element28">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">Reactor</name>
+            <group>
+                <ref name="element41"/>
+                <ref name="element42"/>
+            </group>
+        </element>
+    </define>
+    <define name="element29">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">Enrichment</name>
+            <group>
+                <group>
+                    <group>
+                        <ref name="element43"/>
+                        <ref name="element44"/>
+                    </group>
+                    <ref name="element45"/>
+                </group>
+                <ref name="element46"/>
+            </group>
+        </element>
+    </define>
+    <define name="element30">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">lifetime</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="nonNegativeInteger"/>
+        </element>
+    </define>
+    <define name="element31">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">initialFacilityPrototypes</name>
+            <oneOrMore>
+                <ref name="element47"/>
+            </oneOrMore>
+        </element>
+    </define>
+    <define name="element32">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">spec</name>
+            <choice>
+                <group>
+                    <attribute>
+                        <name ns="">ref</name>
+                        <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                            <param name="pattern">inst\..+</param>
+                        </data>
+                    </attribute>
+                    <choice>
+                        <empty/>
+                        <ref name="element48"/>
+                    </choice>
+                </group>
+                <ref name="element48"/>
+            </choice>
+        </element>
+    </define>
+    <define name="element33">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">lifetime</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="nonNegativeInteger"/>
+        </element>
+    </define>
+    <define name="element34">
+        <element>
+            <null/>
+            <notAllowed/>
+        </element>
+    </define>
+    <define name="element35">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">institutions</name>
+            <oneOrMore>
+                <ref name="element22"/>
+            </oneOrMore>
+        </element>
+    </define>
+    <define name="element36">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">out_commod</name>
+            <attribute>
+                <name ns="">ref</name>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                    <param name="pattern">cmd\..+</param>
+                </data>
+            </attribute>
+        </element>
+    </define>
+    <define name="element37">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">out_recipe</name>
+            <attribute>
+                <name ns="">ref</name>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                    <param name="pattern">rcp\..+</param>
+                </data>
+            </attribute>
+        </element>
+    </define>
+    <define name="element38">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">in_commod</name>
+            <attribute>
+                <name ns="">ref</name>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                    <param name="pattern">cmd\..+</param>
+                </data>
+            </attribute>
+        </element>
+    </define>
+    <define name="element39">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">capacity</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="double"/>
+        </element>
+    </define>
+    <define name="element40">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">comp</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="double"/>
+        </element>
+    </define>
+    <define name="element41">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">fuel</name>
+            <group>
+                <ref name="element49"/>
+                <ref name="element50"/>
+            </group>
+        </element>
+    </define>
+    <define name="element42">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">cycle_time</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="nonNegativeInteger"/>
+        </element>
+    </define>
+    <define name="element43">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">feed</name>
+            <group>
+                <group>
+                    <ref name="element51"/>
+                    <ref name="element52"/>
+                </group>
+                <ref name="element53"/>
+            </group>
+        </element>
+    </define>
+    <define name="element44">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">product</name>
+            <attribute>
+                <name ns="">ref</name>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                    <param name="pattern">cmd\..+</param>
+                </data>
+            </attribute>
+        </element>
+    </define>
+    <define name="element45">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">tails</name>
+            <group>
+                <ref name="element54"/>
+                <ref name="element55"/>
+            </group>
+        </element>
+    </define>
+    <define name="element46">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">swu_capacity</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="double"/>
+        </element>
+    </define>
+    <define name="element47">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">prototype</name>
+            <group>
+                <attribute>
+                    <name ns="">ref</name>
+                    <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                        <param name="pattern">fclt\..+</param>
+                    </data>
+                </attribute>
+                <ref name="element56"/>
+            </group>
+        </element>
+    </define>
+    <define name="element48">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">NullInstitution</name>
+            <empty/>
+        </element>
+    </define>
+    <define name="element49">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">incommods</name>
+            <attribute>
+                <name ns="">ref</name>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREFS">
+                    <param name="pattern">cmd\..+</param>
+                </data>
+            </attribute>
+        </element>
+    </define>
+    <define name="element50">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">outcommods</name>
+            <attribute>
+                <name ns="">ref</name>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREFS">
+                    <param name="pattern">cmd\..+</param>
+                </data>
+            </attribute>
+        </element>
+    </define>
+    <define name="element51">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">commod</name>
+            <attribute>
+                <name ns="">ref</name>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREFS">
+                    <param name="pattern">cmd\..+</param>
+                </data>
+            </attribute>
+        </element>
+    </define>
+    <define name="element52">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">recipe</name>
+            <attribute>
+                <name ns="">ref</name>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREFS">
+                    <param name="pattern">rcp\..+</param>
+                </data>
+            </attribute>
+        </element>
+    </define>
+    <define name="element53">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">initial</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="double"/>
+        </element>
+    </define>
+    <define name="element54">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">assay</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="double"/>
+        </element>
+    </define>
+    <define name="element55">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">commod</name>
+            <attribute>
+                <name ns="">ref</name>
+                <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="IDREF">
+                    <param name="pattern">cmd\..+</param>
+                </data>
+            </attribute>
+        </element>
+    </define>
+    <define name="element56">
+        <element>
+            <name ns="http://www.fuelcycle.org/ns/1.0">number</name>
+            <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" type="nonNegativeInteger"/>
+        </element>
+    </define>
+</grammar>

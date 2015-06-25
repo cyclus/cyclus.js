@@ -12,24 +12,33 @@ export default class Scenario {
   }
 
   init() {
-    this.visit(this.schema.root(), visitor);
+    this.visit(this.schema.root(), this.print);
   }
 
-  visit(node, visitor) {
-    visitor(node);
+  visit(node, visitor, lvl) {
+    lvl = lvl || 0;
+    visitor(node, lvl);
 
-    for (let child of node.children) {
-      console.log(child);
+    console.debug('node:',node, ' children:',node.children);
+    for (let i=0; i<node.children.length; i++) {
+      console.debug('child ', i,': ',node.children[i]);
+      this.visit(node.children[i], visitor, lvl+1);
     }
-    //let n = node.children.length;
-    //for (var i=0; i<n; i++) {
-    //  console.log(node.children[i]);
-    //}
-    //var children = this.schema.find("./*", root, XPathResult.ORDERED_NODE_ITERATOR_TYPE);
-    //var elem = children.iterateNext();
-    //while (elem ) {
-    //  console.log(elem);
-    //  elem = children.iterateNext();
-    //}
+  }
+
+  parse(node) {
+    let obj = {
+      def: node
+    };
+
+    if (node.tagName)
+  }
+
+  print(node, lvl) {
+    let s = '';
+    for (let i=0; i<lvl; i++) {
+      s += '  ';
+    }
+    console.log(s,node);
   }
 }

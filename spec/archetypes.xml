@@ -1,7 +1,8 @@
-<lib>
+<lib xmlns="http://www.fuelcycle.org/ns/1.0">
     <archetype id="arch.reactor">
         <name>Reactor</name>
-        <defaults>
+        <alias>Foo</alias>
+        <config>
             <Reactor>
                 <fuel>
                      <incommods ref="cmd.uox cmd.mox"/>
@@ -10,12 +11,14 @@
 
                 <cycle_time>17</cycle_time>
             </Reactor>
-        </defaults>
+        </config>
     </archetype>
 
     <archetype id="arch.enrichment">
         <name>Enrichment</name>
-        <defaults>
+        <alias>Foo</alias>
+        <lib>cycamore</lib>
+        <config>
             <Enrichment>
                 <feed>
                     <commod ref="cmd.nat_u"/>
@@ -29,6 +32,16 @@
                 </tails>
                 <swu_capacity>1e100</swu_capacity>
             </Enrichment>
-        </defaults>
+        </config>
+    </archetype>
+
+    <archetype id="arch.repo2">
+        <name>Sink</name>      <!-- provide default values -->
+        <config>
+            <Sink>
+                <in_commod ref="cmd.waste"></in_commod>
+                <capacity>1e100</capacity>
+            </Sink>
+        </config>
     </archetype>
 </lib>
